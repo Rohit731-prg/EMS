@@ -8,6 +8,36 @@ function Employee() {
   
   const { empDetails, setEmpDetails, taskList, setTaskList } = useContext(UserContext);
 
+  const compliteTask = (TaskName) => {
+    const updatedTask = taskList[`employee${id.id}`].filter((task) => task.taskTitle !== TaskName);
+    setTaskList((prev) => ({
+      ...prev,
+      [`employee${id.id}`]: updatedTask
+    }))
+    setEmpDetails((prev) =>
+      prev.map((emp) =>
+        String(emp.id) === id.id
+          ? { ...emp, newTask: emp.newTask - 1, completedTask: emp.completedTask + 1 }
+          : emp
+      )
+    );
+  }
+
+  const failedTask = (TaskName) => {
+    const updatedTask = taskList[`employee${id.id}`].filter((task) => task.taskTitle !== TaskName);
+    setTaskList((prev) => ({
+      ...prev,
+      [`employee${id.id}`]: updatedTask
+    }))
+    setEmpDetails((prev) =>
+      prev.map((emp) =>
+        String(emp.id) === id.id
+          ? { ...emp, newTask: emp.newTask - 1, failed: emp.failed + 1 }
+          : emp
+      )
+    );
+  }
+
   return (
     <div className='w-full h-full bg-black px-20 py-10'>
       <p className='text-white text-4xl font-semibold'>Hellow 👋</p>
@@ -48,16 +78,11 @@ function Employee() {
                 <p className='text-white font-semibold text-3xl'>{tasks.taskTitle}</p>
                 <p className='text-white font-medium text-2xl mt-5'>{tasks.taskDesc}</p>
                 <div className='w-full h-auto flex flex-row justify-between mt-10'>
-                  <button onClick={() => {
-                    setTaskList((prev) => ({
-                        ...prev,
-                        [`employee${id.id}`]: prev[`employee${id.id}`].filter((task, i) => i !== index)
-                    }))
-                    setEmpDetails((prev) => prev.map((emp) => emp.id === id.id ? { ...emp, acttask: emp.acttask - 1 } : emp))
-                  }}
+                  <button onClick={() => compliteTask(tasks.taskTitle)}
                   className='hover:shadow-xl bg-red-400 px-5 py-2 text-white font-medium rounded-md'
                   >Mark as Complete</button>
                   <button
+                  onClick={() => failedTask(tasks.taskTitle)}
                   className='hover:shadow-xl bg-green-400 px-5 py-2 text-white font-medium rounded-md'
                   >Mark as Failed</button>
                 </div>
