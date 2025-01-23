@@ -18,8 +18,8 @@ export default {
           display: 'none',
         },
         '.no-scrollbar': {
-          scrollbarWidth: 'none', // For Firefox
-        },
+          scrollbarWidth: 'none', 
+        },// For Firefox
       });
     },
   ],
