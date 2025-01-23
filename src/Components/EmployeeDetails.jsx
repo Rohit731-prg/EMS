@@ -19,11 +19,37 @@ function EmployeeDetails() {
       ...prev,
       [`employee${id}`]: updatedList,
     }));
-    setEmpDetails((prev) => ({
-      ...prev,
-      completedTask: prev.completedTask - 1,
-    }));
+    setEmpDetails((prev) =>
+      prev.map((emp) =>
+        String(emp.id) === id
+          ? {
+              ...emp,
+              completedTask: emp.completedTask - 1
+            }
+          : emp
+      )
+    );
   };
+
+  const failedTask = (taskName) => {
+    const updatedList = taskList[`employee${id}`].filter(
+      (task) => task.taskTitle !== taskName
+    );
+    setTaskList((prev) => ({
+      ...prev,
+      [`employee${id}`]: updatedList,
+    }));
+    setEmpDetails((prev) =>
+      prev.map((emp) =>
+        String(emp.id) === id
+          ? {
+              ...emp,
+              failed: emp.failed - 1
+            }
+          : emp
+      )
+    );
+  }
 
   return (
     <div className="w-full h-auto bg-black px-20 py-10">
@@ -60,13 +86,13 @@ function EmployeeDetails() {
       </div>
       <div className="w-full h-auto mt-40 flex flex-row overflow-x-auto gap-10 wrapper no-scrollbar">
         {taskList[`employee${id}`]?.map((task, index) => (
-          <div key={index} className="min-w-96 h-[400px] p-10 rounded-lg bg-pink-400">
+          <div key={index} className="min-w-96 h-[400px] p-10 rounded-lg bg-pink-400 flex flex-col">
             <div className="w-full h-auto flex flex-row justify-between mb-5">
               <p className="text-white font-medium p-2 bg-red-600 rounded-md">{task.category}</p>
               <p className="text-white font-normal">{task.taskDate}</p>
             </div>
             <p className="text-white font-semibold text-3xl">{task.taskTitle}</p>
-            <p className="text-white font-medium text-2xl mt-5">{task.taskDesc}</p>
+            <p className="w-full text-white font-medium text-2xl mt-5">{task.taskDesc}</p>
             <div className="w-full h-auto flex flex-row justify-between mt-10">
               {task.setStatus === 'Pending' ? (
                 <>
@@ -75,12 +101,17 @@ function EmployeeDetails() {
               ) : task.setStatus === 'Completed' ? (
                 <>
                   <p className="text-white font-medium">Completed</p>
-                  <button onClick={() => deleteTask(task.taskTitle)}>Delete Task</button>
+                  <button
+                  className='px-5 py-3 rounded-lg bg-red-500 text-white text-xl font-medium border-none outline-none' 
+                  onClick={() => deleteTask(task.taskTitle)}>Delete Task</button>
                 </>
               ) : (
                 <>
-                  <p className="text-white font-medium">Failed</p>
-                  <button>Delete Task</button>
+                  <p className="text-white text-xl font-medium">Failed</p>
+                  <button
+                  onClick={() => failedTask(task.taskTitle)}
+                  className='px-5 py-3 rounded-lg bg-red-500 text-white text-xl font-medium border-none outline-none'
+                  >Delete Task</button>
                 </>
               )}
             </div>

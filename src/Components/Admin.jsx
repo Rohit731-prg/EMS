@@ -117,7 +117,7 @@ function Admin() {
                     <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.failed}</p>
                     <button 
                     onClick={() => navigate(`/employeeDetails/${emp.id}`)}
-                    className='w-1/6 text-center text-xl font-medium text-white'>Details</button>
+                    className='w-1/6 text-center text-xl font-medium text-white border-2 border-white py-2 rounded-lg'>Details</button>
                 </div>
             ))}
         </div>
