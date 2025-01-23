@@ -45,11 +45,13 @@ function LogInPage() {
     <div className='w-full h-screen bg-black flex items-center justify-center'>
         <div className='w-[30%] h-auto flex flex-col gap-10 p-14 border-2 border-green-500 rounded-xl'>
             <input type="text"
+            value={userName}
             onChange={(e) => setUserName(e.target.value)}
             placeholder='Enter User Name'
             className='px-3 py-3 rounded-full border-none outline-none' 
             />
             <input type="password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Enter Password'
             className='px-3 py-3 rounded-full border-none outline-none' 

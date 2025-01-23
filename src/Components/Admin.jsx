@@ -5,6 +5,7 @@ import { UserContext } from '../Store/UserContext';
 function Admin() {
     const navigate = useNavigate();
     const [empID, setEmpID] = useState(0);
+    const [status, setStatus] = useState('');
     const [taskTitle, setTaskTitle] = useState('');
     const [taskDesc, setTaskDesc] = useState('');
     const [taskDate, setTaskDate] = useState('');
@@ -18,7 +19,7 @@ function Admin() {
             setEmpDetails((prev) =>
                 prev.map((emp) =>
                     emp.id === empID
-                        ? { ...emp, newTask: emp.newTask + 1 }
+                        ? { ...emp, newTask: emp.newTask + 1, acttask: emp.acttask + 1 }
                         : emp
                 )
             );
@@ -27,6 +28,7 @@ function Admin() {
                 [`employee${empID}`]: [
                     ...prev[`employee${empID}`],
                     {
+                        setStatus: 'Pending',
                         taskTitle: taskTitle,
                         taskDesc: taskDesc,
                         taskDate: taskDate,
@@ -35,6 +37,10 @@ function Admin() {
                 ],
             }))
         }
+        setCategory('');
+        setTaskTitle('');
+        setTaskDesc('');
+        setTaskDate('');
     };    
     
   return (
@@ -51,11 +57,13 @@ function Admin() {
             <div className='w-[40%] h-full'>
                 <p className='text-white text-2xl font-medium my-2'>Task Title</p>
                 <input type="text" 
+                value={taskTitle}
                 onChange={(e) => setTaskTitle(e.target.value)}
                 placeholder='Enter Task Title'
                 className='w-full text-white h-11 rounded-lg px-5 border-2 border-white bg-transparent outline-none'/>
                 <p className='text-white text-2xl font-medium my-2'>Date</p>
                 <input type="date" 
+                value={taskDate}
                 onChange={(e) => setTaskDate(e.target.value)}
                 className='w-full text-white h-11 rounded-lg px-5 border-2 border-white bg-transparent outline-none'/>
                 <p className='text-white text-2xl font-medium my-2'>Asign To</p>
@@ -69,6 +77,7 @@ function Admin() {
                 </select>
                 <p className='text-white text-2xl font-medium my-2'>Category</p>
                 <input type="text" 
+                value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 placeholder='Enter Category'
                 className='w-full text-white h-11 rounded-lg px-5 border-2 border-white bg-transparent outline-none'/>
@@ -78,6 +87,7 @@ function Admin() {
                 className='text-white text-2xl font-medium my-2'
                 >Description</p>
                 <textarea 
+                value={taskDesc}
                 onChange={(e) => setTaskDesc(e.target.value)}
                 className='w-full text-white h-56 rounded-lg px-5 border-2 border-white bg-transparent outline-none'
                 />
@@ -89,21 +99,25 @@ function Admin() {
         </div>
         <div className='w-full h-auto bg-[#474747] py-10 rounded-xl my-10 flex flex-col gap-5 px-5'>
             <div className='w-full h-auto px-5 bg-orange-500 flex flex-row justify-between py-2 rounded-lg'>
-                <p className='w-1/5 text-2xl text-center font-medium text-white'>Employee Name</p>
-                <p className='w-1/5 text-2xl text-center font-medium text-white'>New Task</p>
-                <p className='w-1/5 text-2xl text-center font-medium text-white'>Active Task</p>
-                <p className='w-1/5 text-2xl text-center font-medium text-white'>Complite</p>
-                <p className='w-1/5 text-2xl text-center font-medium text-white'>Failed</p>
+                <p className='w-1/6 text-2xl text-center font-medium text-white'>Employee Name</p>
+                <p className='w-1/6 text-2xl text-center font-medium text-white'>New Task</p>
+                <p className='w-1/6 text-2xl text-center font-medium text-white'>Active Task</p>
+                <p className='w-1/6 text-2xl text-center font-medium text-white'>Complite</p>
+                <p className='w-1/6 text-2xl text-center font-medium text-white'>Failed</p>
+                <p className='w-1/6 text-2xl text-center font-medium text-white'>Action</p>
             </div>
             {empDetails.map((emp, idx) => (
                 <div 
                 key={idx}
                 className='w-full h-auto flex flex-row justify-between py-2 px-2'>
-                    <p className='w-1/5 text-center text-2xl font-medium text-white'>{emp.empName}</p>
-                    <p className='w-1/5 text-center text-2xl font-medium text-white'>{emp.newTask}</p>
-                    <p className='w-1/5 text-center text-2xl font-medium text-white'>{emp.acttask}</p>
-                    <p className='w-1/5 text-center text-2xl font-medium text-white'>{emp.completedTask}</p>
-                    <p className='w-1/5 text-center text-2xl font-medium text-white'>{emp.failed}</p>
+                    <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.empName}</p>
+                    <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.newTask}</p>
+                    <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.acttask}</p>
+                    <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.completedTask}</p>
+                    <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.failed}</p>
+                    <button 
+                    onClick={() => navigate(`/employeeDetails/${emp.id}`)}
+                    className='w-1/6 text-center text-xl font-medium text-white'>Details</button>
                 </div>
             ))}
         </div>
