@@ -70,7 +70,7 @@ function Employee() {
       <p className="text-white text-4xl font-semibold">Hello 👋</p>
       <div className="w-full h-auto flex flex-row justify-between mt-5 font-bold">
         <p className="text-white text-4xl ">
-          {empDetails[id.id].empname}
+          {empDetails.map((name) => name.id === Number(id) && name.empName)}
         </p>
         <button
           onClick={logOut}

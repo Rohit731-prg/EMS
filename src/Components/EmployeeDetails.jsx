@@ -56,13 +56,7 @@ function EmployeeDetails() {
       <p className="text-white text-4xl font-semibold">Welcome to Employee Details</p>
       <div className="w-full h-auto flex flex-row justify-between mt-5 font-bold">
         <p className="text-white text-4xl">
-          {id === '1'
-            ? 'Arjun Sharma'
-            : id === '2'
-            ? 'Ankit Paliwal'
-            : id === '3'
-            ? 'Shuvham Gupta'
-            : 'Unknown Employee'}
+          {empDetails.map((name) => name.id === Number(id) && name.empName)}
         </p>
         <button
           onClick={logOut}

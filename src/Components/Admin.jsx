@@ -70,9 +70,9 @@ function Admin() {
                 onChange={(e) => setEmpID(Number(e.target.value))}
                 className='w-full text-white h-11 rounded-lg px-5 border-2 border-white bg-transparent outline-none'>
                     <option className='bg-black' value="">Select Employee Name</option>
-                    <option className='bg-black' value="1">Arjun</option>
-                    <option className='bg-black' value="2">Ankit</option>
-                    <option className='bg-black' value="3">Shubham</option>
+                    {empDetails.map((emp) => (
+                        <option className='bg-black' key={emp.id} value={emp.id}>{emp.empName}</option>
+                    ))}
                 </select>
                 <p className='text-white text-2xl font-medium my-2'>Category</p>
                 <input type="text" 
