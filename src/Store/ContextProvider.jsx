@@ -6,6 +6,8 @@ function ContextProvider({children}) {
         {
             id: 1,
             empName: 'Arjun Sharma',
+            username: 'Employee1',
+            password: 'emp',
             newTask: 0,
             acttask: 0,
             completedTask: 0,
@@ -14,6 +16,8 @@ function ContextProvider({children}) {
         {
             id: 2,
             empName: 'Ankit Paliwal',
+            username: 'Employee2',
+            password: 'emp',
             newTask: 0,
             acttask: 0,
             completedTask: 0,
@@ -22,6 +26,8 @@ function ContextProvider({children}) {
         {
             id: 3,
             empName: 'Shuvham Gupta',
+            username: 'Employee3',
+            password: 'emp',
             newTask: 0,
             acttask: 0,
             completedTask: 0,

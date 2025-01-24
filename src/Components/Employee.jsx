@@ -70,11 +70,7 @@ function Employee() {
       <p className="text-white text-4xl font-semibold">Hello 👋</p>
       <div className="w-full h-auto flex flex-row justify-between mt-5 font-bold">
         <p className="text-white text-4xl ">
-          {id === '1'
-            ? 'Arjun Sharma'
-            : id === '2'
-            ? 'Ankit Paliwal'
-            : 'Shuvham Gupta'}
+          {empDetails[id.id].empname}
         </p>
         <button
           onClick={logOut}
@@ -98,7 +94,7 @@ function Employee() {
       </div>
       <div className="w-full h-auto mt-40 flex flex-row overflow-x-auto gap-10 wrapper no-scrollbar">
         {taskList[`employee${id}`]?.map((task, index) => (
-          <div key={index} className="min-w-[450px] h-[400px] p-10 rounded-lg bg-pink-400 flex flex-col">
+          <div key={index} className="w-[450px] h-[400px] p-10 rounded-lg bg-pink-400 flex flex-col">
             <div className="w-full h-auto flex flex-row justify-between mb-5">
               <p className="text-white font-medium p-2 bg-red-600 rounded-md">{task.category}</p>
               <p className="text-white font-normal">{task.taskDate}</p>

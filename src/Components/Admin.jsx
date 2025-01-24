@@ -5,7 +5,6 @@ import { UserContext } from '../Store/UserContext';
 function Admin() {
     const navigate = useNavigate();
     const [empID, setEmpID] = useState(0);
-    const [status, setStatus] = useState('');
     const [taskTitle, setTaskTitle] = useState('');
     const [taskDesc, setTaskDesc] = useState('');
     const [taskDate, setTaskDate] = useState('');
@@ -47,7 +46,7 @@ function Admin() {
     <div className='w-full h-full bg-black px-20 py-10'>
         <p className='text-white text-4xl font-semibold'>Hellow 👋</p>
         <div className='w-full h-auto flex flex-row justify-between mt-5 font-bold'>
-            <p className='text-white text-4xl '>Admin</p>
+            <p className='text-white text-4xl '>Admin</p>                
             <button
             onClick={() => navigate('/')}
             className='px-5 py-3 rounded-lg bg-green-500 text-white text-2xl font-medium border-none outline-none'
