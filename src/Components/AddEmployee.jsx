@@ -55,40 +55,40 @@ function AddEmployee() {
                 </button>
             </div>
             <div className='flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 w-[30%] rounded-lg border-2 border-green-500 px-10 py-3'>
-                <p className='text-white text-xl'>Employee Name</p>
+                <p className='text-white text-sm ml-3 mb-[4px]'>Employee Name</p>
                 <input
                     value={empName}
                     placeholder='Enter Employee Name'
-                    className='w-full h-10 rounded-full px-5 mb-2 border-none outline-none'
+                    className='w-full h-10 rounded-full px-5 mb-4 border-none outline-none'
                     onChange={(e) => setEmpName(e.target.value)}
                     type="text"
                 />
-                <p className='text-white text-xl'>Employee Username</p>
+                <p className='text-white text-sm ml-3 mb-[4px]'>Employee Username</p>
                 <input
                     value={userName}
                     placeholder='Enter Employee Username'
-                    className='w-full h-10 rounded-full px-5 mb-2 border-none outline-none'
+                    className='w-full h-10 rounded-full px-5 mb-4 border-none outline-none'
                     onChange={(e) => setUserName(e.target.value)}
                     type="text"
                 />
-                <p className='text-white text-xl'>Employee Password</p>
+                <p className='text-white text-sm ml-3 mb-[4px]'>Employee Password</p>
                 <input
                     value={password}
                     placeholder='Enter Employee Password'
-                    className='w-full h-10 rounded-full px-5 mb-2 border-none outline-none'
+                    className='w-full h-10 rounded-full px-5 mb-4 border-none outline-none'
                     onChange={(e) => setPassword(e.target.value)}
                     type="password"
                 />
-                <p className='text-white text-xl'>Confirm Password</p>
+                <p className='text-white text-sm ml-3 mb-[4px]'>Confirm Password</p>
                 <input
                     value={confirmPassword}
                     placeholder='Confirm Password'
-                    className='w-full h-10 rounded-full px-5 mb-2 border-none outline-none'
+                    className='w-full h-10 rounded-full px-5 mb-4 border-none outline-none'
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     type="password"
                 />
                 <button
-                    className='bg-green-500 text-white rounded-full py-3 text-2xl mt-5'
+                    className='bg-green-500 text-white rounded-full py-3 text-2xl mt-2'
                     onClick={createNewID}
                 >
                     Submit

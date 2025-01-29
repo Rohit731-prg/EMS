@@ -109,7 +109,7 @@ function Admin() {
                 <div 
                 key={idx}
                 className='w-full h-auto flex flex-row justify-between py-2 px-2'>
-                    <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.empName}</p>
+                    <p className='w-1/6 text-start text-2xl font-medium text-white'>{emp.empName}</p>
                     <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.newTask}</p>
                     <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.acttask}</p>
                     <p className='w-1/6 text-center text-2xl font-medium text-white'>{emp.completedTask}</p>
