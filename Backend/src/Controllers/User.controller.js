@@ -1,13 +1,16 @@
 import User from "../Models/User.model.js";
+import bcrypt from "bcryptjs";
 
 const insert = async (req, res) => {
   const { empName, username, password } = req.body;
-  const user = {
-    empName,
-    username,
-    password,
-  };
   try {
+    const hashedPass = await bcrypt.hash(password, 10);
+
+    const user = {
+      empName,
+      username,
+      password: hashedPass,
+    }
     const response = await User.insertOne(user);
     return res.send({
       success: true,
@@ -35,7 +38,9 @@ const login = async (req, res) => {
       });
     }
 
-    if (userData.password !== password) {
+    const isPasMatch = await bcrypt.compare(password, userData.password);
+
+    if (!isPasMatch) {
       return res.send({
         status: false,
         message: "Invalid password",
