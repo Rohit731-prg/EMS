@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { BiLogOutCircle } from "react-icons/bi";
 
 export default function Sidebar() {
     const navigate = useNavigate()
@@ -51,7 +52,9 @@ export default function Sidebar() {
                         className="w-full flex items-center space-x-3 px-4 py-3 text-red-400 hover:text-red-300 hover:bg-red-900/30 rounded-xl transition-all duration-300"
                     >
                         <i className="fas fa-sign-out-alt text-lg w-6"></i>
-                        <span>Log Out</span>
+                        <span className='flex flex-row items-center gap-2 text-[18px] font-semibold'>
+                            <BiLogOutCircle /> Log Out
+                        </span>
                     </button>
                 </div>
             </nav>

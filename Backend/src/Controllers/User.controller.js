@@ -2,13 +2,24 @@ import User from "../Models/User.model.js";
 import bcrypt from "bcryptjs";
 
 const insert = async (req, res) => {
-  const { empName, username, password } = req.body;
+  const { empName, email, phone, position, password } = req.body;
+  if ( !empName || !email || !phone || !position || !password) {
+    return res.send({
+      success: false,
+      message: "All fields are required",
+    });
+  }
   try {
+    const isExis = await User.findOne({ email });
+    if ( isExis ) return res.send({ success: false, message: "User already exists" });
+
     const hashedPass = await bcrypt.hash(password, 10);
 
     const user = {
       empName,
-      username,
+      email,
+      phone,
+      position,
       password: hashedPass,
     }
     const response = await User.insertOne(user);
@@ -26,11 +37,18 @@ const insert = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.send({
+      status: false,
+      message: "Email and password are required",
+    });
+  }
 
   try {
-    const userData = await User.findOne({ username: username });
-
+    const userData = await User.findOne({ email });
+    console.log(userData);
     if (!userData) {
       return res.send({
         status: false,

@@ -90,4 +90,20 @@ const deleteOneTask = async (req, res) => {
   }
 }
 
-export { insert, getWorkById, updateStatus,deleteOneTask };
+const getAllWorks = async (req, res) => {
+  try {
+    const response = await Work.find().populate("assignTo");
+
+    return res.send({
+      status: true,
+      data: response,
+    });
+  } catch (error) {
+    return res.send({
+      status: false,
+      error: error,
+    });
+  }
+};
+
+export { insert, getWorkById, updateStatus,deleteOneTask, getAllWorks };

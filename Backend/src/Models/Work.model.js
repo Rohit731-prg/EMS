@@ -3,31 +3,31 @@ import mongoose from "mongoose";
 const WorkSchema = new mongoose.Schema({
     title: {
         type: String,
-        require: true,
+        required: true,
     },
     date: {
         type: String,
-        require: true,
+        required: true,
     },
     assignTo: {
-        type: String,
-        require: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
     },
     category: {
         type: String,
-        require: true,
+        required: true,
     },
     work: {
         type: String,
-        require: true,
+        required: true,
     },
     status: {
         type: String,
-        require: true,
+        required: true,
         default: "pending"
     }
 });
 
 const Work = mongoose.model('Work', WorkSchema);
-
 export default Work;

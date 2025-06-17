@@ -21,10 +21,10 @@ const validateInputs = (username, password) => {
   return true;
 };
 
-const authenticateUser = async (username, password) => {
+const authenticateUser = async (email, password) => {
   try {
     const response = await axios.post(API_ENDPOINTS.LOGIN, {
-      username,
+      email,
       password,
     });
     return response.data;
@@ -69,14 +69,14 @@ const ActionButton = ({ onClick, children, variant = "primary", disabled }) => {
 
 function LogInPage() {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
+  const [email, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async () => {
-    if (!validateInputs(userName, password)) return;
-    if (userName === ADMIN_CREDENTIALS.userName && password === ADMIN_CREDENTIALS.password) {
+    if (!validateInputs(email, password)) return;
+    if (email === ADMIN_CREDENTIALS.userName && password === ADMIN_CREDENTIALS.password) {
       setTimeout(() => {
         setIsLoading(false);
         navigate("/dashboard");
@@ -86,7 +86,8 @@ function LogInPage() {
 
     setIsLoading(true);
     try {
-      const authResponse = await authenticateUser(userName, password);
+      const authResponse = await authenticateUser(email, password);
+      console.log(authResponse);
 
       if (authResponse.status) {
         setTimeout(() => navigate(`/employee/${authResponse.data._id}`), 2000);
@@ -115,9 +116,9 @@ function LogInPage() {
           <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
             <InputField
               type="text"
-              value={userName}
+              value={email}
               onChange={(e) => setUserName(e.target.value)}
-              placeholder="Enter User Name"
+              placeholder="Enter Username"
               icon={userIcon}
             />
 
